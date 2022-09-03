@@ -44,7 +44,7 @@ $setting_aplikasi = $this->db->get('setting')->row();
                 </div>
               </div>
               <div class="form-group position-relative has-icon-left">
-                
+
                 <div class="position-relative">
                   <input type="password" class="form-control" id="password" name="password">
                   <div class="form-control-icon">
@@ -54,15 +54,14 @@ $setting_aplikasi = $this->db->get('setting')->row();
               </div>
 
               <div class='form-check clearfix my-4'>
-                <div class="checkbox float-left">
-                  
+                <div class="float-left">
+                  <a class="btn btn-primary" href="<?= base_url('auth/register_user'); ?>">Pendaftaran</a>
                 </div>
-                <!-- <div class="float-right">
-                  <a href="<?= base_url('auth/create_account'); ?>">Don't have an account?</a>
-                </div> -->
+                <div class="float-right">
+                  <button class="btn btn-primary float-right" type="submit">Login</button>
+                </div>
               </div>
               <div class="clearfix">
-                <button class="btn btn-primary float-right" type="submit">Submit</button>
               </div>
               <?php echo form_close(); ?>
 
