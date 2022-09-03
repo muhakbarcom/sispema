@@ -82,9 +82,11 @@
                                 <?php endif ?>
                                 <?php if ($this->ion_auth->in_group("cheff")) : ?>
                                     <td>
-                                        <?php if ($pemesanan->status_pemesanan == 'belum diproses' && $pemesanan->status_pembayaran == 'selesai' || $pemesanan->status_pembayaran == 'dalam proses') : ?>
+                                        <?php if ($pemesanan->status_pemesanan == 'belum diproses' && $pemesanan->status_pembayaran == 'selesai') : ?>
                                             <a href="<?= base_url('pemesanan/konfirmasi_pesanan/') . $pemesanan->id_pemesanan ?>" class="btn btn-warning">Proses Pesanan</a>
                                         <?php elseif ($pemesanan->status_pemesanan == 'sedang diproses') : ?>
+                                            <a href="<?= base_url('pemesanan/selesaikan/') . $pemesanan->id_pemesanan ?>" class="btn btn-primary">Selesaikan</a>
+                                        <?php elseif ($pemesanan->status_pemesanan == 'belum diproses' && $pemesanan->status_pembayaran == 'dalam proses') : ?>
                                             <a href="<?= base_url('pemesanan/selesaikan/') . $pemesanan->id_pemesanan ?>" class="btn btn-primary">Selesaikan</a>
                                         <?php else : ?>
                                             -

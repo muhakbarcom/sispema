@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2022 at 03:43 PM
+-- Generation Time: Sep 03, 2022 at 12:48 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -88,7 +88,23 @@ INSERT INTO `detail_pemesanan` (`id_detail_pemesanan`, `id_pemesanan`, `id_produ
 (62, 52, 33, 1, 14500),
 (63, 52, 31, 1, 12),
 (64, 52, 30, 2, 30000),
-(65, 53, 30, 1, 15000);
+(65, 53, 30, 1, 15000),
+(66, 54, 33, 1, 14500),
+(67, 54, 31, 1, 12),
+(68, 55, 33, 1, 14500),
+(69, 55, 31, 1, 12),
+(70, 56, 33, 1, 14500),
+(71, 57, 33, 1, 14500),
+(72, 57, 31, 1, 12),
+(73, 58, 33, 1, 14500),
+(74, 59, 33, 1, 14500),
+(75, 60, 33, 1, 14500),
+(76, 61, 33, 1, 14500),
+(77, 62, 33, 2, 29000),
+(78, 63, 33, 1, 14500),
+(79, 64, 33, 1, 14500),
+(80, 64, 31, 3, 36),
+(81, 65, 33, 1, 14500);
 
 -- --------------------------------------------------------
 
@@ -279,7 +295,7 @@ CREATE TABLE `pembayaran` (
   `id_pemesanan` int(11) NOT NULL,
   `metode_pembayaran` enum('bayar ditempat','transfer bank') NOT NULL,
   `status_pembayaran` enum('pembayaran tertunda','dalam proses','selesai') NOT NULL,
-  `bukti_transfer` varchar(100) DEFAULT NULL
+  `bukti_transfer` varchar(100) DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -298,8 +314,16 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `metode_pembayaran`, 
 (20, 49, 'transfer bank', 'dalam proses', 'iko13.jpg'),
 (21, 50, 'bayar ditempat', 'dalam proses', NULL),
 (22, 51, 'bayar ditempat', 'dalam proses', NULL),
-(23, 52, 'transfer bank', 'selesai', 'Dummy_JPG.jpg'),
-(24, 53, 'transfer bank', 'pembayaran tertunda', 'Dummy_JPG1.jpg');
+(23, 52, 'transfer bank', 'selesai', 'iko13.jpg'),
+(24, 53, 'transfer bank', 'selesai', 'iko13.jpg'),
+(25, 55, 'transfer bank', 'pembayaran tertunda', 'iko13.jpg'),
+(26, 56, 'bayar ditempat', 'pembayaran tertunda', NULL),
+(27, 59, 'bayar ditempat', 'pembayaran tertunda', NULL),
+(28, 61, 'bayar ditempat', 'pembayaran tertunda', ' '),
+(29, 62, 'bayar ditempat', 'dalam proses', ' '),
+(30, 63, 'transfer bank', 'selesai', 'Picture1.png'),
+(31, 64, 'bayar ditempat', 'dalam proses', ' '),
+(32, 65, 'transfer bank', 'selesai', 'Picture11.png');
 
 -- --------------------------------------------------------
 
@@ -358,7 +382,19 @@ INSERT INTO `pemesanan` (`id_pemesanan`, `tanggal_pemesanan`, `total_pembayaran`
 (50, '2022-09-02', 14500, 54, 'belum diproses', NULL, 'Pelanggan 01', NULL),
 (51, '2022-09-02', 27000, 54, 'belum diproses', NULL, 'Pelanggan 01', NULL),
 (52, '2022-09-02', 44512, 54, 'selesai', 50, 'Pelanggan 01', NULL),
-(53, '2022-09-02', 15000, 54, 'belum diproses', NULL, 'Pelanggan 01', NULL);
+(53, '2022-09-02', 15000, 54, 'sedang diproses', 50, 'Pelanggan 01', NULL),
+(54, '2022-09-03', 14512, 49, 'belum diproses', NULL, 'gre', '9'),
+(55, '2022-09-03', 14512, 54, 'belum diproses', NULL, 'Pelanggan 01', NULL),
+(56, '2022-09-03', 14500, 56, 'belum diproses', NULL, 'muhammad grenius', NULL),
+(57, '2022-09-03', 14512, 49, 'belum diproses', NULL, 'akbar', '09'),
+(58, '2022-09-03', 14500, 49, 'belum diproses', NULL, '2020', '20'),
+(59, '2022-09-03', 14500, 54, 'belum diproses', NULL, 'Pelanggan 01', NULL),
+(60, '2022-09-03', 14500, 49, 'belum diproses', NULL, 'mama', '90'),
+(61, '2022-09-03', 14500, 49, 'belum diproses', NULL, 'muhammad grenius', '09'),
+(62, '2022-09-03', 29000, 49, 'selesai', 50, 'grenius geovani', '99'),
+(63, '2022-09-03', 14500, 54, 'selesai', 50, 'Pelanggan 01', NULL),
+(64, '2022-09-03', 14536, 49, 'selesai', NULL, 'asjkhdn', '89'),
+(65, '2022-09-03', 14500, 54, 'selesai', 50, 'Pelanggan 01', NULL);
 
 -- --------------------------------------------------------
 
@@ -439,7 +475,9 @@ INSERT INTO `users` (`id`, `username`, `email`, `first_name`, `last_name`, `pass
 (49, 'waiter@sispema.com', 'waiter@sispema.com', 'waiter', '1', '$2y$08$ef74XEANqDTWdXse2SW4tew0isSgyDULY/Y.S0xB4BcUsVR1Xflke', 1, 'default.jpg', '0821212'),
 (50, 'cheff@sispema.com', 'cheff@sispema.com', 'cheff', '1', '$2y$08$7PSOxFmcb4ZMv8qOK9ggBeTtjeOg/sAYRaubKsAkDnBtBwilwnyTG', 1, 'default.jpg', '0822221'),
 (51, 'manager@sispema.com', 'manager@sispema.com', 'restoran', 'manager', '$2y$08$44LisO.JjK1YXeNvsWAnvOfsl4Kskrd4chisxDEaQOCnESlBheMHu', 1, 'default.jpg', '0822222'),
-(54, '', 'pelanggan01@gmail.com', 'Pelanggan', '01', '$2y$08$fbSv9bLe2YJUrODMQmCMy.z7.Ib8Lxt.oOtiS6nSikzCWb8AwyZyW', 1, 'default.jpg', '98888899');
+(54, '', 'pelanggan01@gmail.com', 'Pelanggan', '01', '$2y$08$fbSv9bLe2YJUrODMQmCMy.z7.Ib8Lxt.oOtiS6nSikzCWb8AwyZyW', 1, 'default.jpg', '98888899'),
+(55, '', 'admin2@gmail.com', 'admin2', '02', '$2y$08$2un5a.rgPWE.Uw7o5laetedgeDyEk9gr0u3nwSKYfGtqz4C.SWOii', 1, 'default.jpg', '99'),
+(56, '', 'muhgre@gmail.com', 'muhammad', 'grenius', '$2y$08$j5XPJEvIk4ud15etLclni.fYTCdp3.Ng0ANgJW1vUAr4H0T/pqTqK', 1, 'default.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -472,7 +510,9 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (138, 49, 2),
 (136, 50, 34),
 (137, 51, 33),
-(140, 54, 35);
+(140, 54, 35),
+(141, 55, 1),
+(142, 56, 35);
 
 -- --------------------------------------------------------
 
@@ -564,7 +604,7 @@ ALTER TABLE `users_groups`
 -- AUTO_INCREMENT for table `detail_pemesanan`
 --
 ALTER TABLE `detail_pemesanan`
-  MODIFY `id_detail_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_detail_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `frontend_menu`
@@ -594,13 +634,13 @@ ALTER TABLE `menu_type`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `produk`
@@ -618,13 +658,13 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

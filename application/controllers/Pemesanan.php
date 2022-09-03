@@ -329,6 +329,13 @@ class Pemesanan extends CI_Controller
                 $this->Detail_pemesanan_model->insert($data_detail);
             }
 
+            $data_pembayaran = array(
+                'id_pemesanan' => $id_trx,
+                'status_pembayaran' => "dalam proses",
+            );
+
+            $this->Pembayaran_model->insert($data_pembayaran);
+
             $this->cart->destroy();
             redirect('pemesanan/berhasil');
         }
