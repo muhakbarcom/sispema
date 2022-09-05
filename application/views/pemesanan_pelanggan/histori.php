@@ -43,7 +43,7 @@
                             <th>Status Pemesanan</th>
                             <th>Status Pembayaran</th>
                             <th>Bukti Transfer</th>
-                            <th>Action</th>
+                            <th colspan="2">Action</th>
                         </tr><?php
                                 foreach ($pemesanan_data as $pemesanan) {
                                     $id_pelanggan = $pemesanan->id_pelanggan;
@@ -68,6 +68,12 @@
                                 </td>
                                 <td>
                                     <a href="<?= base_url('pemesanan_pelanggan/detail_histori/') . $pemesanan->id_pemesanan; ?>" class="btn btn-warning">Detail</a>
+
+                                </td>
+                                <td>
+                                    <?php if ($pemesanan->status_pembayaran == "ditolak") : ?>
+                                        <a href="<?= base_url('pemesanan_pelanggan/upload_ulang/') . $pemesanan->id_pemesanan; ?>" class="btn btn-xs btn-primary">Upload Ulang <br> Bukti Pembayaran</a>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php

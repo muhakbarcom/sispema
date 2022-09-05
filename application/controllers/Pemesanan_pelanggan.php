@@ -25,11 +25,11 @@ class Pemesanan_pelanggan extends CI_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'pemesanan?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pemesanan?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'pemesanan_pelanggan?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'pemesanan_pelanggan?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'pemesanan';
-            $config['first_url'] = base_url() . 'pemesanan';
+            $config['base_url'] = base_url() . 'pemesanan_pelanggan';
+            $config['first_url'] = base_url() . 'pemesanan_pelanggan';
         }
 
         $config['per_page'] = 10;
@@ -373,11 +373,11 @@ class Pemesanan_pelanggan extends CI_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'pemesanan/admin?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pemesanan/admin?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'pemesanan_pelanggan/histori?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'pemesanan_pelanggan/histori?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'pemesanan/admin';
-            $config['first_url'] = base_url() . 'pemesanan/admin';
+            $config['base_url'] = base_url() . 'pemesanan_pelanggan/histori';
+            $config['first_url'] = base_url() . 'pemesanan_pelanggan/histori';
         }
 
         $config['per_page'] = 10;
@@ -425,6 +425,55 @@ class Pemesanan_pelanggan extends CI_Controller
 
         $data['page'] = 'pemesanan_pelanggan/detail_histori';
         $this->load->view('template/pelanggan_pelanggan', $data);
+    }
+
+    public function upload_ulang($id)
+    {
+        $pemesanan = $this->db->query("SELECT id_pembayaran from pembayaran where id_pemesanan = '$id'")->row();
+        $id_pembayaran = $pemesanan->id_pembayaran;
+
+        $data = array(
+            'id_pembayaran' => $id_pembayaran,
+
+        );
+        $data['title'] = 'Detail Pemesanan';
+        $data['subtitle'] = '';
+        $data['crumb'] = [
+            'Detail Pemesanan' => '',
+        ];
+
+        $data['page'] = 'pemesanan_pelanggan/upload_ulang';
+        $this->load->view('template/pelanggan_pelanggan', $data);
+    }
+
+    public function upload_ulang_action()
+    {
+        $id_pembayaran = $this->input->post('id_pembayaran', TRUE);
+        $bukti_transfer = $_FILES['bukti_transfer']['name'];
+
+        $config['upload_path']          = './assets/uploads/image/bukti_tf/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 2048;
+        $config['file_name']            = 'bukti_transfer' . time();
+
+        $this->load->library('upload', $config);
+
+        if (!empty($_FILES["bukti_transfer"]["name"])) {
+            if ($this->upload->do_upload('bukti_transfer')) {
+
+                $bukti_transfer = $this->upload->data('file_name');
+            } else {
+                $bukti_transfer = null;
+            }
+        }
+
+        $data = array(
+            'bukti_transfer' => $bukti_transfer,
+        );
+
+        $this->Pembayaran_model->update($id_pembayaran, $data);
+        $this->session->set_flashdata('success', 'Upload ulang berhasil');
+        redirect('pemesanan_pelanggan/histori');
     }
 
     public function berhasil()
