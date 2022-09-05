@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2022 at 12:48 PM
+-- Generation Time: Sep 05, 2022 at 01:43 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -104,7 +104,14 @@ INSERT INTO `detail_pemesanan` (`id_detail_pemesanan`, `id_pemesanan`, `id_produ
 (78, 63, 33, 1, 14500),
 (79, 64, 33, 1, 14500),
 (80, 64, 31, 3, 36),
-(81, 65, 33, 1, 14500);
+(81, 65, 33, 1, 14500),
+(82, 66, 33, 1, 14500),
+(83, 66, 32, 1, 6000),
+(84, 67, 31, 3, 36000),
+(85, 67, 16, 1, 14700),
+(86, 68, 16, 1, 14700),
+(87, 68, 33, 2, 29000),
+(88, 68, 14, 5, 25000);
 
 -- --------------------------------------------------------
 
@@ -323,7 +330,10 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `metode_pembayaran`, 
 (29, 62, 'bayar ditempat', 'dalam proses', ' '),
 (30, 63, 'transfer bank', 'selesai', 'Picture1.png'),
 (31, 64, 'bayar ditempat', 'dalam proses', ' '),
-(32, 65, 'transfer bank', 'selesai', 'Picture11.png');
+(32, 65, 'transfer bank', 'selesai', 'Picture11.png'),
+(33, 66, 'transfer bank', 'selesai', 'WIN_20220525_10_19_14_Pro.jpg'),
+(34, 67, 'transfer bank', 'selesai', 'Bukti-Transfer.jpg'),
+(35, 68, 'transfer bank', 'selesai', 'Bukti-Transfer1.jpg');
 
 -- --------------------------------------------------------
 
@@ -394,7 +404,10 @@ INSERT INTO `pemesanan` (`id_pemesanan`, `tanggal_pemesanan`, `total_pembayaran`
 (62, '2022-09-03', 29000, 49, 'selesai', 50, 'grenius geovani', '99'),
 (63, '2022-09-03', 14500, 54, 'selesai', 50, 'Pelanggan 01', NULL),
 (64, '2022-09-03', 14536, 49, 'selesai', NULL, 'asjkhdn', '89'),
-(65, '2022-09-03', 14500, 54, 'selesai', 50, 'Pelanggan 01', NULL);
+(65, '2022-09-03', 14500, 54, 'selesai', 50, 'Pelanggan 01', NULL),
+(66, '2022-09-04', 20500, 54, 'selesai', 50, 'Pelanggan 01', NULL),
+(67, '2022-09-05', 50700, 54, 'belum diproses', NULL, 'Pelanggan 01', NULL),
+(68, '2022-09-05', 68700, 57, 'selesai', 50, 'tes aja', NULL);
 
 -- --------------------------------------------------------
 
@@ -419,13 +432,13 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `harga_produk`, `gambar_produk
 (14, 'teh', 5000, 'teh.jpg', 'Tersedia'),
 (15, 'mie setan', 14700, 'mie_setan1.jpg', 'Tersedia'),
 (16, 'mie iblis', 14700, 'mie_iblis.jpg', 'Tersedia'),
-(18, 'Siomay', 14, 'siomay.jpg', 'Tersedia'),
-(19, 'Es Coklat', 12, 'es.jpg', 'Tersedia'),
+(18, 'Siomay', 14000, 'siomay.jpg', 'Tersedia'),
+(19, 'Es Coklat', 12000, 'es.jpg', 'Tersedia'),
 (24, 'es sundelbolong', 8500, 'es1.jpg', 'Tersedia'),
 (27, 'ceker', 12000, 'ceker.jpg', 'Tersedia'),
 (30, 'lumpia udang', 15000, 'Lumpia_udang.jpg', 'Tersedia'),
-(31, 'Green Thai tea', 12, '12.png', 'Tersedia'),
-(32, 'Air Mineral', 6000, 'air_mineral2.jpg', 'Tidak Tersedia'),
+(31, 'Green Thai tea', 12000, '12.png', 'Tersedia'),
+(32, 'Air Mineral', 6000, 'air_mineral2.jpg', 'Tersedia'),
 (33, 'pangsit', 14500, 'pangsit.png', 'Tersedia');
 
 -- --------------------------------------------------------
@@ -477,7 +490,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `first_name`, `last_name`, `pass
 (51, 'manager@sispema.com', 'manager@sispema.com', 'restoran', 'manager', '$2y$08$44LisO.JjK1YXeNvsWAnvOfsl4Kskrd4chisxDEaQOCnESlBheMHu', 1, 'default.jpg', '0822222'),
 (54, '', 'pelanggan01@gmail.com', 'Pelanggan', '01', '$2y$08$fbSv9bLe2YJUrODMQmCMy.z7.Ib8Lxt.oOtiS6nSikzCWb8AwyZyW', 1, 'default.jpg', '98888899'),
 (55, '', 'admin2@gmail.com', 'admin2', '02', '$2y$08$2un5a.rgPWE.Uw7o5laetedgeDyEk9gr0u3nwSKYfGtqz4C.SWOii', 1, 'default.jpg', '99'),
-(56, '', 'muhgre@gmail.com', 'muhammad', 'grenius', '$2y$08$j5XPJEvIk4ud15etLclni.fYTCdp3.Ng0ANgJW1vUAr4H0T/pqTqK', 1, 'default.jpg', '');
+(56, '', 'muhgre@gmail.com', 'muhammad', 'grenius', '$2y$08$j5XPJEvIk4ud15etLclni.fYTCdp3.Ng0ANgJW1vUAr4H0T/pqTqK', 1, 'default.jpg', ''),
+(57, '', 'tesaja@gmail.com', 'tes', 'aja', '$2y$08$JZWxvZOFq7JLSmSiVk8VUebwTvIKmekk5ZufoKy/WF72qGuePqNba', 1, 'default.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -512,7 +526,8 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (137, 51, 33),
 (140, 54, 35),
 (141, 55, 1),
-(142, 56, 35);
+(142, 56, 35),
+(143, 57, 35);
 
 -- --------------------------------------------------------
 
@@ -604,7 +619,7 @@ ALTER TABLE `users_groups`
 -- AUTO_INCREMENT for table `detail_pemesanan`
 --
 ALTER TABLE `detail_pemesanan`
-  MODIFY `id_detail_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id_detail_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `frontend_menu`
@@ -634,13 +649,13 @@ ALTER TABLE `menu_type`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `produk`
@@ -658,13 +673,13 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

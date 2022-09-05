@@ -75,6 +75,8 @@ class Pemesanan extends CI_Controller
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Detail_pemesanan_model->total_rows_detail($q, $id_pesanan);
         $pemesanan = $this->Detail_pemesanan_model->get_limit_data_detail($id_pesanan);
+        $total = $this->Detail_pemesanan_model->get_limit_data_detail_total($id_pesanan);
+        $total = $total[0];
 
 
         $this->load->library('pagination');
@@ -85,7 +87,9 @@ class Pemesanan extends CI_Controller
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
+            'total' => $total->total_harga,
             'start' => $start,
+            'id_pesanan' => $id_pesanan,
         );
         $xxx = $this->db->query("SELECT * FROM pemesanan where id_pemesanan='$id_pesanan'")->row();
         $data['nama_pemesan'] = $xxx->nama_pemesan;
@@ -105,6 +109,32 @@ class Pemesanan extends CI_Controller
 
         $data['page'] = 'pemesanan/pemesanan_detail';
         $this->load->view('template/backend', $data);
+    }
+
+    public function print($id_pesanan)
+    {
+        $pemesanan = $this->Detail_pemesanan_model->get_limit_data_detail($id_pesanan);
+        $total = $this->Detail_pemesanan_model->get_limit_data_detail_total($id_pesanan);
+        $total = $total[0];
+        $data = array(
+            'pemesanan_data' => $pemesanan,
+            'total' => $total->total_harga,
+            'id_pesanan' => $id_pesanan,
+        );
+        $xxx = $this->db->query("SELECT * FROM pemesanan where id_pemesanan='$id_pesanan'")->row();
+        $data['nama_pemesan'] = $xxx->nama_pemesan;
+        $data['no_meja'] = $xxx->no_meja;
+        $data['tanggal_pemesanan'] = $xxx->tanggal_pemesanan;
+        if ($xxx->id_cheff) {
+            $nama_cheff = $this->db->query("SELECT concat(first_name,' ',last_name) as name from users where id='$xxx->id_cheff'")->row()->name;
+            $data['id_cheff'] = $nama_cheff;
+        } else {
+            $data['id_cheff'] = '';
+        }
+
+        // $data['page'] = 'pemesanan/print';
+        // $this->load->view('template/backend', $data);
+        $this->load->view('pemesanan/print', $data);
     }
 
     public function admin()
@@ -421,11 +451,31 @@ class Pemesanan extends CI_Controller
         redirect(site_url('pemesanan/admin'));
     }
 
+
     public function konfirmasi_pembayaran($id_pembayaran)
     {
 
         $data = array(
             'status_pembayaran' => "selesai",
+        );
+
+        // $data_pemesanan = array(
+        //     'status_pemesanan' => "sedang diproses",
+        //     'id_cheff' => $this->session->userdata("user_id"),
+        // );
+
+        $this->Pembayaran_model->update($id_pembayaran, $data);
+        // $this->Pemesanan_model->update($id_pemesanan, $data_pemesanan);
+
+        $this->session->set_flashdata('success', 'Update Record Success');
+        redirect(site_url('pemesanan/admin'));
+    }
+
+    public function tolak_pembayaran($id_pembayaran)
+    {
+
+        $data = array(
+            'status_pembayaran' => "ditolak",
         );
 
         // $data_pemesanan = array(

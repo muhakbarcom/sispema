@@ -45,6 +45,12 @@ class Detail_pemesanan_model extends CI_Model
         $this->db->where("id_pemesanan", $id_pemesanan);
         return $this->db->get($this->table)->result();
     }
+    function get_limit_data_detail_total($id_pemesanan)
+    {
+        $this->db->select_sum('total_harga');
+        $this->db->where("id_pemesanan", $id_pemesanan);
+        return $this->db->get($this->table)->result();
+    }
 
     function total_rows_detail($q = NULL, $id_pemesanan)
     {

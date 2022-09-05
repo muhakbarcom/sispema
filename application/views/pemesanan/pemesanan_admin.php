@@ -72,9 +72,13 @@
                                 <?php if ($this->ion_auth->in_group("waiter")) : ?>
                                     <td>
                                         <?php if ($pemesanan->status_pembayaran == 'pembayaran tertunda') : ?>
-                                            <a href="<?= base_url('pemesanan/konfirmasi_pembayaran/') . $pemesanan->id_pembayaran ?>" class="btn btn-warning">Konfirmasi Pembayaran</a>
+                                            <a href="<?= base_url('pemesanan/konfirmasi_pembayaran/') . $pemesanan->id_pembayaran ?>" class="btn btn-warning">Konfirmasi</a>
+                                            <a href="<?= base_url('pemesanan/tolak_pembayaran/') . $pemesanan->id_pembayaran ?>" class="btn btn-danger">Tolak</a>
                                         <?php elseif ($pemesanan->status_pembayaran == 'selesai') : ?>
                                             <a href="#" class="pill badge">Pembayaran Terkonfirmasi</a>
+                                        <?php elseif ($pemesanan->status_pembayaran == 'ditolak') : ?>
+                                            <a href="<?= base_url('pemesanan/konfirmasi_pembayaran/') . $pemesanan->id_pembayaran ?>" class="btn btn-warning">Setujui</a>
+                                            <a href="<?= base_url('pemesanan/tolak_pembayaran/') . $pemesanan->id_pembayaran ?>" class="btn btn-danger">Tolak</a>
                                         <?php else : ?>
                                             -
                                         <?php endif; ?>
